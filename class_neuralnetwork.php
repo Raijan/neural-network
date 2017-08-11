@@ -253,7 +253,6 @@ class NeuralNetwork {
 	 */
 	protected function activation($value) {
 		return tanh($value);
-		// return (1.0 / (1.0 + exp(- $value)));
 	}
 
 	/**
@@ -266,7 +265,6 @@ class NeuralNetwork {
 	protected function derivativeActivation($value) {
 		$tanh = tanh($value);
 		return 1.0 - $tanh * $tanh;
-		//return $value * (1.0 - $value);
 	}
 
 	/**
@@ -464,7 +462,7 @@ class NeuralNetwork {
 		$avgErrorControlSet = array ();
 		$sample_count = 10;
 		do {
-//                        echo "<tr><td colspan=10><b>epoch $epoch</b></td></tr>";
+
 			for ($i = 0; $i < count($this->trainInputs); $i ++) {
 				// select a training pattern at random
 				$index = mt_rand(0, count($this->trainInputs) - 1);
@@ -475,10 +473,6 @@ class NeuralNetwork {
 
 				// calculate the actual output
 				$output = $this->calculate($input);
-
-//                              echo "<tr><td></td><td>Training set $i</td><td>input = (" . implode(", ", $input) . ")</td>";
-//			 	echo "<td>desired = (" . implode(", ", $desired_output) . ")</td>";
-//				echo "<td>output = (" . implode(", ", $output) .")</td></tr>";
 
 				// change network weights
 				$this->backpropagate($output, $desired_output);
@@ -835,4 +829,3 @@ class NeuralNetwork {
 		return $RMSerror;
 	}
 }
-?>
